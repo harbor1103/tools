@@ -10,7 +10,7 @@ https://www.bilibili.com/video/BV1qT4y1v7n1/?spm_id_from=pageDriver&vd_source=b0
 https://docs.qq.com/doc/DRWhSWk50c0x4a2JM
 ```
 
-## 1、git命令简便使用
+## 1、git简便使用（一般从1-4开始看）
 
 ### 1-0下载：直接去官网下载
 
@@ -46,7 +46,7 @@ git clone xxx@xxxx.xxxx
 git init
 ```
 
-#### 3-1查看状态(status)
+#### 1-3.1查看状态(status)
 
 ```
 git status
@@ -54,19 +54,19 @@ git status
 
 一共有三种状态
 
-##### 3-1-1：“untracked files”
+##### 3.1-1：“untracked files”
 
 ![1694437199180](Git使用.assets/1694437199180.png)
 
 
 
-##### 3-1-2：“changes to be committed”
+##### 3.1-2：“changes to be committed”
 
 ![1694437211846](Git使用.assets/1694437211846.png)
 
 
 
-##### 3-1-3:"modified"
+##### 3.1-3:"modified"
 
 ![1694438190451](Git使用.assets/1694438190451.png)
 
@@ -98,9 +98,10 @@ git add .
 ### 1-5再commit
 
 commit只是把代码提交到本地，要是想上传到服务器，还是得用push
+**注意-m后面没有空格**
 
 ```
-git commit -m "在这里写备注"
+git commit -m"在这里写备注"
 git commit -a -m “在这里写备注” //把add 和commit 两个命令合并了
 ```
 
@@ -138,75 +139,51 @@ git reset
 
 
 
+## 2、git多人远程开发实例（推荐)(重要)
+
+1. 将你的仓库与远端同步
+
+   ```shell
+   git checkout main
+   git pull origin main
+   ```
+
+2. 以你的姓名拼音和网站代号创建新分支（分支名例如`zhongzhenyu_efe_en`）。每个网站的每个语言版本都需要创建独立的分支。
+
+   ```shell
+   git checkout -b "<你的姓名拼音>_<网站代号>"
+   ```
+
+3. 修改代码
+
+4. 提交更改
+
+   ```shell
+   git add .
+   git commit -m"<你的提交信息，使用英文，句首字母大写，句末不加标点>"
+   ```
+
+5. 将更改推送到远端
+
+   ```shell
+   git push origin "<你的姓名拼音>_<网站代号>"
+   ```
+
+6. 创建合并请求（merge request）
+
+7. 等待和并请求被审核
+
+8. 在远端分支被合并后删除你的分支，并更新主分支
+
+   ```shell
+   git checkout main
+   git branch -d "<你的姓名拼音>_<网站代号>"
+   git pull origin main
+   ```
+
+9. 重复以上步骤
 
 
-## 2、git多人开发
-
-
-
-#### 2-1在远程服务器上创建一个共享版本库
-
-1.项目负责人打开远程的服务器，然后创建一个工作区
-2.在远程的服务器上打开工作区，在工作区中打开Git终端工具
-3.在Git终端工具中输入 git init --bare
-
-4.经过以上几步，就代表远程服务器上的共享版本库已经创建好了
-
-#### 2-2开发人员下载远程版本库
-
-1.开发人员在自己的电脑上打开Git终端工具
-
-查看远程仓库
-
-```
-git remote
-git remote -v
-```
-
-2.从远程的服务器上下载当前项目的共享版本库 
-
-```
-git clone xxx@xxx.xx.xxx （远程服务器共享版本库地址）
-```
-
-和单人开发使用Git的区别: 
-
-> ​	单人开发是自己创建版本库，**而多人开发是从远程服务器下载版本库进入开发阶段**
-
-#### 2-3进入开发阶段
-
-和单人开发一样
-1.设置用户名和邮箱
-2.编写代码
-3.添加到暂缓区
-
-```
-git add.
-```
-
-4.git commit -m 添加到HEADER指针指向的分支
-
-```
-git commit -m "xxxxxxx"
-```
-
-5.注意点:commit是将编写好的代码提交到本地的版本库，所以其它的开发人员是拿不到我们提交的代码的如果想让其它开发人员也能拿到我们提交的代码，还必须将编写好的代码提交到远程的服务器
-
-------
-
-**多人开发特有**：
-
-6.将代码提交到远程的服务器 
-
-```
-git push
-```
-
-7.其它的开发人员只需要通过 git pull 就可以拿到更新的代码了
-
-```
-git pull
-```
 
 
 
@@ -236,7 +213,7 @@ git pull
 
 只要开发完了一个功能就要立即提交代码，因为**在企业开发中谁后提交谁就负责解决冲突**
 
-## 4、git分支特性
+## 4、远程多人开发（branch--分支)（4-3开始步骤）
 
 ### 4-0：参考资料：
 
@@ -348,4 +325,6 @@ git checkout main
 git branch -D my-branch
 git pull origin master //把主分支的更新同步到本地
 ```
+
+
 
